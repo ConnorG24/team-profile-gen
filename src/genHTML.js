@@ -22,7 +22,7 @@ const createEngineerCard = function(engineer){
     <div class="col-4 mt-4">
         <div class="card h-100">
             <div class="card-header">
-                <h3>${engineer}</h3>
+                <h3>${engineer.name}</h3>
                 <h4>Engineer</h4><i class="material-icons">support_agent</i>
             </div>
 
@@ -34,5 +34,23 @@ const createEngineerCard = function(engineer){
 
         </div>
     </div>
+    `
+}
+const createInternCard = function(intern){
+    return`
+    <div class="col-4 mt-4">
+        <div class="card h-100">
+            <div class="card-header">
+                <h3>${intern.name}</h3>
+                <h4>Intern</h4><i class="material-icons">school</i>
+            </div>
+
+            <div class="card-body">
+                <p>ID: ${intern.id}</p>
+                <p>Email: <a href="${intern.email}">${intern.email}</a></p>
+                <p>School: ${intern.school}</p>
+            </div>
+    </div>
+</div>
     `
 }
