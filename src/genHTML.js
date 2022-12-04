@@ -54,3 +54,34 @@ const createInternCard = function(intern){
 </div>
     `
 }
+
+assembleCards = function(data){
+    assembledCards = [];
+    for (let i = 0; i < data.length; i++){
+        const employee = data[i];
+        const role = employee.getRole();
+
+        if(role === 'Manager'){
+            const managerCard = createManagerCard(employee);
+            assembledCards.push(managerCard);
+        }
+
+        if(role ==='Engineer'){
+            const engineerCard = createEngineerCard(employee);
+            assembledCards.push(engineerCard);
+        }
+
+        if(role === 'Intern'){
+            const internCard = createInternCard(employee);
+            assembledCards.push(internCard);
+        }
+
+        const joinCards = assembledCards.join('');
+        const createTeamProfile = renderHTML(joinCards);
+        return createTeamProfile;
+    }    
+}
+
+const renderHTML = function(joinCards){
+    
+}
