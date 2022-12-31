@@ -1,9 +1,13 @@
-const fs = require('fs');
+
 const inquirer = require('inquirer');
+const fs = require('fs');
+
 const Manager = require('./lib/manager');
 const Engineer = require('./lib/engineer');
 const Intern = require('./lib/intern');
+
 const genHTML = require('./src/genHTML');
+
 
 staffArray = [];
 
@@ -29,7 +33,8 @@ const newManager = () =>{
     ]).then(managerData=>{
         const {name, id, email, officeNum} = managerData;
         const manager = new Manager(name,id,email,officeNum);
-        staffArray.push(manager); 
+        staffArray.push(manager);
+        newStaff(); 
     })
 }
 
@@ -76,20 +81,20 @@ const newStaff = () =>{
         } else if (role ==='Engineer'){
             employee = new Engineer(name,id,email,github);
         }
-        staffData.push(employee);
+        staffArray.push(employee);
         if(anotherOne){
             newStaff(); 
-        } 
-    })
-}
-
-const writeFile = data =>{
-    fs.writeFile('./dist/index.html', data, err =>{
-        if(err){
-            console.log(err)
-            return;
         }else{
-            console.log('HTML is ready for use')
+             
+           //console.log(staffArray);
+             fs.writeFile('./dist/index.html', genHTML(staffArray), err => {
+                 if (err) throw new Error(err);
+            });
         }
     })
 }
+
+ 
+
+newManager() 
+
